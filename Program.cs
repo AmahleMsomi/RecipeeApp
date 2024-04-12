@@ -1,10 +1,11 @@
 ﻿using System;
-namespace POEPART_1
+namespace RecipeeApp
 {
+    //st10344228
     // Create an ingredient class
     class Ingredient
     {
-        public string IngredientName { get; set; } // Ingredient name
+        public string Name { get; set; } // Ingredient name
         public double Quantity { get; set; } // Ingredient Quantity
         public string Unit { get; set; } // Unit of measurement 
     }
@@ -64,6 +65,9 @@ namespace POEPART_1
         {
             while (true)
             {
+                // Greeting message
+                Console.WriteLine("Welcome to RecipeApp!");
+
                 // Prompt user to enter recipe details
                 Console.WriteLine("Enter Recipe Details:");
 
@@ -92,7 +96,7 @@ namespace POEPART_1
                     Console.Write("Unit: ");
                     string unit = Console.ReadLine();
 
-                    ingredients[i] = new Ingredient { IngredientName = name, Quantity = quantity, Unit = unit };
+                    ingredients[i] = new Ingredient { Name = name, Quantity = quantity, Unit = unit };
                 }
 
                 // Prompt user on how many steps are there going to be
@@ -115,18 +119,18 @@ namespace POEPART_1
                 // Recipe object 
                 Recipe recipe = new Recipe(recipeName, ingredients, steps);
 
-                // Display recipe details
+                // Displaying the recipe details
                 DisplayRecipe(recipe);
 
                 // Prompt user to enter factor to scale by
-                Console.WriteLine("Enter factor you wish to scale by:");
+                Console.WriteLine("Enter factor you want to scale items by:");
                 double scale = Convert.ToDouble(Console.ReadLine());
                 recipe.ScaleIngredients(scale);
 
                 // Display updated recipe details after scaling
                 DisplayRecipe(recipe);
 
-                Console.WriteLine("Do you wish to enter another recipe? \n select (yes/no)");
+                Console.WriteLine("Do you want to enter another recipe? \n select (yes/no)");
                 string response = Console.ReadLine();
                 if (response.ToLower() != "yes")
                     break;
@@ -138,24 +142,24 @@ namespace POEPART_1
         // Method to display recipe details
         static void DisplayRecipe(Recipe recipe)
         {
-            Console.WriteLine("--------------------");
-            Console.WriteLine("Recipe Details: ");
-            Console.WriteLine("--------------------");
+            Console.WriteLine("************************************");
+            Console.WriteLine("RECIPE DETAILS: ");
+            Console.WriteLine("************************************");
             Console.WriteLine($"Recipe Name: {recipe.Name}");
 
 
-            Console.WriteLine("\nIngredients:");
+            Console.WriteLine("\nINGREDIENTS:");
             foreach (var ingredient in recipe.Ingredients)
             {
-                Console.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.IngredientName}");
+                Console.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");
             }
 
-            Console.WriteLine("\nSteps:");
+            Console.WriteLine("\nSTEPS:");
             for (int i = 0; i < recipe.Steps.Length; i++)
             {
                 Console.WriteLine($"Step {i + 1}: {recipe.Steps[i].Description}");
             }
-            Console.WriteLine("--------------------");
+            Console.WriteLine("*************************************************************");
         }
     }
 }
